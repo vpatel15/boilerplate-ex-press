@@ -1,7 +1,12 @@
 let express = require('express');
+let bodyParser = require('body-parser');
 let app = express();
 
 console.log('Hello World');
+
+// To parse data in post request body 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Add test middleware to print method, path and ip
 app.use(function(req, res, next) {
