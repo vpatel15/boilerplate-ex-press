@@ -3,6 +3,12 @@ let app = express();
 
 console.log('Hello World');
 
+// Add test middleware to print method, path and ip
+app.use(function(req, res, next) {
+  console.log(req.method.toUpperCase() + ' ' + req.path + ' - ' + req.ip);
+  next();
+})
+
 // app.get('/', function(req, res) {
 //   res.send('Hello Express');
 // })
@@ -17,10 +23,11 @@ app.use('/public', express.static(__dirname + '/public'))
 
 // Serve Json from REST API request
 app.use('/json', function(req, res) {
+  var response = 'Hello json';
   if(process.env.MESSAGE_STYLE === 'uppercase') {
-    res.json({"message": "HELLO JSON"}); 
+    res.json({"message": response.toUpperCase()}); 
   } else {
-    res.json({"message": "Hello json"});
+    res.json({"message": response});
   }
 })
 
