@@ -60,6 +60,15 @@ app.get('/name', function(req,res){
   })
 })
 
+// Send response from Post body data 
+app.post('/name', function(req,res){
+  var firstName = req.body.first;
+  var lastName = req.body.last;
+  res.json({
+    name: `${firstName} ${lastName}`
+  })
+})
+
 
 
 
