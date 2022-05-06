@@ -39,6 +39,13 @@ app.get('/now', function(req, res, next) {
   res.json({time: req.time});
 })
 
+// Get req param from client
+app.get('/:word/echo', function(req,res){
+  res.json({
+    echo: req.params.word
+  })
+})
+
 
 
 
