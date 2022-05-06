@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 app.use('/public', express.static(__dirname + '/public'))
 
 // Serve Json from REST API request
-app.use('/json', function(req, res) {
+app.get('/json', function(req, res) {
   var response = 'Hello json';
   if(process.env.MESSAGE_STYLE === 'uppercase') {
     res.json({"message": response.toUpperCase()}); 
@@ -39,10 +39,19 @@ app.get('/now', function(req, res, next) {
   res.json({time: req.time});
 })
 
-// Get req param from client
+// Get req segment from client
 app.get('/:word/echo', function(req,res){
   res.json({
     echo: req.params.word
+  })
+})
+
+// Get req query param from client
+app.get('/name', function(req,res){
+  var firstName = req.query.first;
+  var lastName = req.query.last;
+  res.json({
+    name: `${firstName} ${lastName}`
   })
 })
 
